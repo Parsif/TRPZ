@@ -11,13 +11,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/less.style1.css"> -->
+  <!-- <link rel="stylesheet/less" type="text/css" href ="less/less.style1.less">  -->
+  <script src="node_modules/less/dist/less.min.js"></script>
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css"
     integrity="sha512-nNlU0WK2QfKsuEmdcTwkeh+lhGs6uyOxuUs+n+0oXSYDok5qy0EI0lt01ZynHq6+p/tbgpZ7P+yUb+r71wqdXg=="
     crossorigin="anonymous" />
-  <title>Title2</title>
+  <title>Hello, world!</title>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -33,50 +37,95 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"
     integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA=="
     crossorigin="anonymous"></script>
-  <script src="main.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+   var Theme_number = 1;
+   var Default_theme = 1;
+   var Ext = "less";
+   // var Ext = "css";
+
+   function getUrl(num) {
+     return Ext + "/" + Ext + ".style" + num + ".css";
+   }
+
+   function getThemeNumber() {
+     Theme_number = Theme_number % 2 === 0 ? 1 : 2;
+     console.log(Theme_number);
+     return Theme_number;
+   }
+
+   function initialize() {
+     var link = document.createElement("link");
+     link.setAttribute("rel", "stylesheet");
+     link.setAttribute("href", getUrl(Default_theme));
+     link.setAttribute("id", "theme");
+     document.head.appendChild(link);
+   }
+
+   function initListener() {
+     document
+             .querySelector(".mynav__theme")
+             .addEventListener("click", changeTheme);
+   }
+
+   function changeTheme() {
+     document.getElementById("theme")
+             .setAttribute("href", getUrl(getThemeNumber()));
+
+   }
+
+   initialize();
+
+   window.addEventListener("load", initListener);
+ </script>
 </head>
 
 <body>
   <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="index.html">
-          <img src="img/icon.png" width="30" height="30">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/icon.png" width="30" height="30">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link text-light" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                aria-controls="home" aria-selected="true">
-                Главная</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab"
-                aria-controls="gallery" aria-selected="false">
-                Галерея</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" id="testing-tab" data-toggle="tab" href="#testing" role="tab"
-                aria-controls="testing" aria-selected="false">Тестирование</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
-                aria-controls="contacts" aria-selected="false">
-                Контакты</a>
-            </li>
-          </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-light" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+              aria-selected="true">
+              Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab"
+              aria-controls="gallery" aria-selected="false">
+              Галерея</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" id="testing-tab" data-toggle="tab" href="#testing" role="tab"
+              aria-controls="testing" aria-selected="false">Тестирование</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
+              aria-controls="contacts" aria-selected="false">
+              Контакты</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" id="less-tab" data-toggle="tab" href="#less" role="tab" aria-controls="less"
+              aria-selected="false">
+              LESS</a>
+          </li>
+        </ul>
 
-          <ul class="nav ml-auto">
-            <li class="nav-item">
-              <a href="#" class="nav-link text-light" data-toggle="modal" data-target="#exampleModal">Вход</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <ul class="nav ml-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-light" data-toggle="modal" data-target="#exampleModal">Вход</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
 
@@ -294,6 +343,71 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div class="tab-pane my-3" id="less" role="tabpanel" aria-labelledby="less-tab">
+        <div class="wrapper">
+          <nav class="mynav"> <button class="mynav__theme">Change theme</button>
+            <ul class="mynav__menu">
+              <li class="mynav__item"><a href="#" class="mynav__link">Home</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">About</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">Items</a></li>
+              <li class="mynav__item"><a href="#" class="mynav__link">Contact</a></li>
+            </ul>
+          </nav>
+          <section class="main">
+            <div class="main__content">
+              <div class="main__tile--danger">
+                <div class="main__header">Product 1</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4</li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+                <div class="main__footer"> <button class="main__button
+          main__button--danger">Click on me!</button></div>
+              </div>
+              <div class="main__tile main__tile--warning">
+                <div class="main__header">Product 2</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2</li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+                <div class="main__footer"> <button class="main__button
+          main__button--warning">Click on me!</button> </div>
+              </div>
+              <div class="main__tile main__tile--primary">
+                <div class="main__header">Product 3</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1</li>
+                  <li class="main__item">Feature 2<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 3<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5</li>
+                </ul>
+                <div class="main__footer"> <button class="main__button
+          main__button--danger">Click on me!</button> </div>
+              </div>
+              <div class="main__tile main__tile--success">
+                <div class="main__header">Product 4</div>
+                <ul class="main__features">
+                  <li class="main__item">Feature 1<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 2</li>
+                  <li class="main__item">Feature 3</li>
+                  <li class="main__item">Feature 4<span class="main__plus">+</span></li>
+                  <li class="main__item">Feature 5<span class="main__plus">+</span></li>
+                </ul>
+                <div class="main__footer"> <button class="main__button
+            main__button--warning">Click on me!</button> </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
